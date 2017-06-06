@@ -37,12 +37,3 @@ public class QuizRestController {
   }
 
 }
-
-
-    /*List<IndividualQuestion> listOfQuestions = new ArrayList<>();
-    individualQuestion.setId(id);
-    individualQuestion.setQuestion(question);
-    listOfQuestions.add(individualQuestion);
-    quizQuestion.setQuestions(listOfQuestions);
-    quizRepo.save(quizQuestion);
-    return quizRepo;*/
