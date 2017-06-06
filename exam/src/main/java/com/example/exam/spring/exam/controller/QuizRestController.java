@@ -32,7 +32,7 @@ public class QuizRestController {
 
   @PostMapping(value = "/answeres")
   public QuizRepo receiveAnsweres(@RequestBody QuizAnswere quizAnswere) {
-    quizRepo.findAll()
+    quizRepo.findAll();
     return quizRepo;
   }
 
