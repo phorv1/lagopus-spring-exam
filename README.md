@@ -105,16 +105,127 @@ Your task is to create a RESTful quiz application with full of greenfox question
 ### In what cases would you choose to use an abstract class over an interface?
 
 Please define it with your own words. We are expecting at least 3 distinct ideas that you write here:
+Abstract class and interface are similar concepts, with interface being the more abstract of the two.
+
+A class can inherit only one abstract class (i.e., there is no multiple inheritance), but it can implement multiple interfaces. This makes interfaces less restrictive and more flexible.
+
+A class which implements an interface has to implement everything within the interface. On the other hand an abstract class can have non-abstract methods which does not need to be implemented within the class which extends the abstract class.
+
+An interface is a contract between implementing class ad the outside world. All the fields are static and final.
+
+Abstract class is almost like a regular class except it has abstract methods in it. An abstract class can only be extended. You cannot instantiate an instance of an abstract class.
+
+If you are designing large functional units, use an abstract class. If you want to provide common, implemented functionality among all implementations of your component, use an abstract class. Abstract classes allow you to partially implement your class, whereas interfaces contain no implementation for any members.
+
+Example 1:
+
+// 'framework library' for a person
+// a person can enrol and submit
+// however, the class that consume this framework library
+// need to provide 'where' the paperwork need to be sent
+public abstract Person
+{
+    public abstract SendPaperWork(string paperwork)
+
+    public void Enrol()
+    {
+        SendPaperWork("enrolment");
+    }
+
+    public void Submit()
+    {
+        SendPaperWork("report");
+    }
+}
+
+// by inheriting Person abstract class
+// we are enabling student to enrol and submit
+// however, SendPaperWork need to be implemented
+// because we need to tell it explicitly 'where'
+// to send the enrolment/ submission
+public class Student : Person
+{
+    public override SendPaperWork(string paperwork)
+    {
+        School.Send(paperwork);
+    }
+}
+
+// an employee send the paperwork to a different 'place' than student
+public class Employee : Person
+{
+    public override SendPaperWork(string paperwork)
+    {
+        Company.Send(paperwork);
+    }
+}
+
+
+Example 2:
+public interface LoginAuth{
+   public String encryptPassword(String pass);
+   public void checkDBforUser();
+}
+
+public class DBMySQL implements LoginAuth{
+          // Needs to implement both methods
+}
+public class DBOracle implements LoginAuth{
+          // Needs to implement both methods
+}
+public class DBAbc implements LoginAuth{
+          // Needs to implement both methods
+}
+
+public abstract class LoginAuth{
+   public String encryptPassword(String pass){
+            // Implement the same default behavior here
+            // that is shared by all subclasses.
+   }
+
+   // Each subclass needs to provide their own implementation of this only:
+   public abstract void checkDBforUser();
+}
+
+Example 3:
+abstract class GraphicObject {
+    int x, y;
+    ...
+    void moveTo(int newX, int newY) {
+        ...
+    }
+    abstract void draw();
+    abstract void resize();
+}
+
+Each nonabstract subclass of GraphicObject, such as Circle and Rectangle, must provide implementations for the draw and resize methods:
+
+class Circle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
+class Rectangle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
 
 
 ### Analyzing URL
 Please name the parts of the URL below.
 [<img src="assets/URLanalysis.png" alt="parts of URL" />](assets/URLanalysis.png?raw=true)
 
-1:  
-2:  
-3:  
-4:  
-5:  
-6:  
-7:  
+1:  protocol - HyperText Transfer Protocol Secure
+2:  subdomain
+3:  domain name
+4:  port number
+5:  path (directory on the server)
+6:  query
+7:  parameters
